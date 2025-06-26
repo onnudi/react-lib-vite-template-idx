@@ -22,7 +22,7 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <MyButton label='My Button'/>
+        <MyButton label='My Button' onClick={() => console.log('click')}/>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR here
         </p>
