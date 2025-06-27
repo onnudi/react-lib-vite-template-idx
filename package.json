@@ -20,7 +20,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b ./tsconfig.lib.json && vite build",
-    "lint": "eslint .",
+    "lint": "eslint . --ext ts,tsx",
+    "lint:fix": "eslint . --ext ts,tsx --fix",
     "preview": "vite preview",
     "prepublishOnly": "npm run build"
   },
