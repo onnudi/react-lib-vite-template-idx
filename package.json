@@ -3,17 +3,20 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "dist/main.js",
-  "types": "dist/main.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/main.d.ts",
-      "default": "./dist/main.js"
-    }
-  },
   "files": [
     "dist"
   ],
+  // main is used to point the cjs entry point and we are not supporting it.
+  // "main": "dist/main.js",
+  "types": "dist/main.d.ts",
+  "exports": "./dist/main.js",
+  "module": "./dist/main.js",
+  // "exports": {
+  //   ".": {
+  //     "types": "./dist/main.d.ts",
+  //     "default": "./dist/main.js"
+  //   }
+  // },
   "sideEffects": [
     "**/*.css"
   ],
@@ -27,7 +30,7 @@
     "stylelint": "stylelint **/*.css",
     "stylelint:fix": "stylelint **/*.css --fix",
     "preview": "vite preview",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "vitest run && npm run build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "vitest",
