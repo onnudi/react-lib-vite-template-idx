@@ -13,7 +13,11 @@ export default defineConfig({
   plugins: [
     react(),
     libInjectCss(),
-    dts({ include: ['lib'], tsconfigPath: resolve(__dirname, 'tsconfig.lib.json') }),
+    dts({
+      include: ['lib'],
+      exclude: ['**/*.stories.tsx'],
+      tsconfigPath: resolve(__dirname, 'tsconfig.lib.json')
+    }),
   ],
   build: {
     copyPublicDir: false,
