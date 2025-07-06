@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+/// <reference types="vitest" />
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts'
@@ -15,7 +17,7 @@ export default defineConfig({
     libInjectCss(),
     dts({
       include: ['lib'],
-      exclude: ['**/*.stories.tsx'],
+      exclude: ['**/*.stories.tsx', 'src/test', '**/*.test.tsx'],
       tsconfigPath: resolve(__dirname, 'tsconfig.lib.json')
     }),
   ],
@@ -50,5 +52,13 @@ export default defineConfig({
         },
       },
     },
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/test/setup.ts',
+    // you might want to disable it, if you don't have tests that rely on CSS
+    // since parsing CSS is slow
+    css: true,
   },
 })
