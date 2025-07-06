@@ -17,7 +17,7 @@ export default defineConfig({
     libInjectCss(),
     dts({
       include: ['lib'],
-      exclude: ['**/*.stories.tsx', 'src/test', '**/*.test.tsx'],
+      exclude: ['lib/**/*.stories.tsx', 'src/test', 'lib/**/*.test.tsx'],
       tsconfigPath: resolve(__dirname, 'tsconfig.lib.json')
     }),
   ],
@@ -30,7 +30,7 @@ export default defineConfig({
     rollupOptions: {
       external: Object.keys(peerDependencies),
       input: Object.fromEntries(
-        glob.sync('lib/**/*.{ts,tsx}', { ignore: ['lib/**/*.d.ts'] }).map((file) => {
+        glob.sync('lib/**/*.{ts,tsx}', { ignore: ['lib/**/*.d.ts', 'lib/**/*.stories.tsx', 'lib/**/*.{test,spec}.{ts,tsx}'] }).map((file) => {
           return [
             // The name of the entry point
             // lib/nested/foo.ts becomes nested/foo
@@ -41,6 +41,7 @@ export default defineConfig({
           ]
         })
       ),
+      
       // TODO: what is this for?
       output: {
         assetFileNames: 'assets/[name][extname]',
@@ -55,11 +56,12 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    environment: 'jsdom',
+    environment: 'happy-dom',
     setupFiles: './src/test/setup.ts',
+    include: ['./lib/**/*.(test|spec).(ts|tsx)'],
     // you might want to disable it, if you don't have tests that rely on CSS
     // since parsing CSS is slow
-    css: true,
+    // css: true,
     coverage: {
       include: ['src/components'],
       exclude: ['**/*.stories.tsx'],
