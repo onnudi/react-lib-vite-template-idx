@@ -24,6 +24,8 @@
     "lint:fix": "eslint . --ext ts,tsx --fix",
     "format": "prettier --check .",
     "format:fix": "prettier --write .",
+    "stylelint": "stylelint **/*.css",
+    "stylelint:fix": "stylelint **/*.css --fix",
     "preview": "vite preview",
     "prepublishOnly": "npm run build"
   },
@@ -49,6 +51,8 @@
     "glob": "^11.0.3",
     "globals": "^16.2.0",
     "prettier": "^3.6.1",
+    "stylelint": "^16.21.1",
+    "stylelint-config-standard": "^38.0.0",
     "ts-node": "^10.9.2",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.34.1",
